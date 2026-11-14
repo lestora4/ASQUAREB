@@ -1,0 +1,4 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="256" height="256"><rect x="10" y="5" width="44" height="54" rx="7" fill="#FFFFFF"/>
+<text x="32" y="38" text-anchor="middle" font-family="Poppins,Arial,sans-serif" font-weight="800" font-size="24" fill="#EF4444">A+</text>
+<path d="M18 46h28M18 52h16" stroke="#7DD3FC" stroke-width="2.600" stroke-linecap="round"/>
+<path d="M18 16h14" stroke="#1378bc" stroke-width="2.600" stroke-linecap="round"/></svg>

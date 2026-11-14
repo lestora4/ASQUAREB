@@ -1,0 +1,44 @@
+/* Service page themes - AsquareB Knowledge Orbit Private Limited
+   Each service page sets <body class="svc-theme svc-XXXX">. Brand colours, type, spacing and buttons are untouched;
+   Only soft background COLOURS differ per service (no patterns or illustrations). */
+.svc-theme{--svc-tint:#f5f9fd;--svc-glow:rgba(42,155,216,.25)}
+.svc-cia{--svc-tint:#f4f8fd;--svc-glow:rgba(42,155,216,.28)}
+.svc-global{--svc-tint:#f1f8f9;--svc-glow:rgba(31,166,160,.26)}
+.svc-academic{--svc-tint:#faf8f1;--svc-glow:rgba(212,175,55,.26)}
+.svc-guidance{--svc-tint:#f3f7fc;--svc-glow:rgba(96,150,225,.28)}
+.svc-distance{--svc-tint:#f2f5fc;--svc-glow:rgba(84,120,225,.28)}
+.svc-competitive{--svc-tint:#fbf9f2;--svc-glow:rgba(212,175,55,.28)}
+.svc-soft{--svc-tint:#f2f8f5;--svc-glow:rgba(34,160,120,.24)}
+.svc-special{--svc-tint:#f7f6fb;--svc-glow:rgba(150,110,210,.22)}
+
+/* Hero: soft accent glow only (no illustration) */
+.svc-theme .about-hero .hero-geometric-bg::after{content:"";position:absolute;inset:0;pointer-events:none;
+  background:radial-gradient(ellipse 700px 520px at 85% 35%,var(--svc-glow),transparent 62%)}
+
+/* Light content sections: plain tint colours, no patterns */
+.svc-theme .bg-white.pc-section{background-image:none}
+.svc-theme .bg-slate-50.pc-section:not(.pc-curriculum){background-color:var(--svc-tint);background-image:none}
+.svc-theme .bg-navydeep.pc-section{background-image:linear-gradient(180deg,#f5fafe 0%,var(--svc-tint) 100%)}
+.svc-theme .pc-section.pc-curriculum{background-image:linear-gradient(180deg,#ffffff 0%,var(--svc-tint) 100%)}
+@media print{.svc-theme .about-hero .hero-geometric-bg::after{display:none}}
+
+/* Remove decorative background patterns / shapes on service pages */
+.svc-theme .about-hero::before,
+.svc-theme .pc-curriculum::before,
+.svc-theme .pc-curriculum::after,
+.svc-theme .bg-navydeep::before,
+.svc-theme .bg-white.pc-section::before,
+.svc-theme .bg-white.pc-section::after,
+.svc-theme .bg-slate-50.pc-section::before,
+.svc-theme .bg-slate-50.pc-section::after{display:none !important;background:none !important}
+.svc-theme .pc-commit-grid{display:none !important}
+.svc-theme .bg-navydeep.pc-section::after,
+.svc-theme .pc-section > div.absolute.rounded-full,
+.svc-theme .pc-section div.absolute[class*="rounded-full"]{display:none !important}
+/* Hero: remove decorative rings/shapes, keep the plain navy gradient */
+.svc-theme .about-hero::after,
+.svc-theme .hero-geometric-bg::before,
+.svc-theme .hero-geometric-bg::after,
+.svc-theme .hero-geometric-bg .geo-shape,
+.svc-theme .hero-geometric-bg [class*="circle"],
+.svc-theme .hero-geometric-bg [class*="ring"]{display:none !important}

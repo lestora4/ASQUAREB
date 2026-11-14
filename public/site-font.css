@@ -1,0 +1,161 @@
+/* ==========================================================
+   AsquareB site font – Cambria (applied site-wide)
+   Loaded last on every page so it overrides all earlier fonts.
+   To change the font later, edit only the --ab-font line below.
+   ========================================================== */
+@font-face{font-family:"Cambria AB";src:url("fonts/Cambria-Regular.woff2") format("woff2");font-weight:100 499;font-style:normal;font-display:swap}
+@font-face{font-family:"Cambria AB";src:url("fonts/Cambria-Bold.woff2") format("woff2");font-weight:500 900;font-style:normal;font-display:swap}
+@font-face{font-family:"Cambria AB";src:url("fonts/Cambria-Italic.woff2") format("woff2");font-weight:100 499;font-style:italic;font-display:swap}
+@font-face{font-family:"Cambria AB";src:url("fonts/Cambria-BoldItalic.woff2") format("woff2");font-weight:500 900;font-style:italic;font-display:swap}
+
+:root{
+  --ab-font:"Cambria AB",Cambria,Georgia,"Times New Roman",serif;
+  --_typography---font-family--primary-font:var(--ab-font) !important;
+  --_typography---font-family--button-font:var(--ab-font) !important;
+  --ab-body:var(--ab-font) !important;
+  --ab-display:var(--ab-font) !important;
+}
+
+/* Every element, form control, SVG text and pseudo-element –
+   except the Webflow icon font (arrows, chevrons, etc.) */
+html body,
+html body *:not([class*="w-icon-"]):not(.w-icon-dropdown-toggle),
+html body *:not([class*="w-icon-"])::before,
+html body *:not([class*="w-icon-"])::after,
+html body input,
+html body select,
+html body textarea,
+html body button,
+html body input::placeholder,
+html body textarea::placeholder{
+  font-family:var(--ab-font) !important;
+}
+
+
+/* ==========================================================
+   PROFESSIONAL TYPOGRAPHY UPDATE
+   Cambria + clearer font-weight hierarchy
+   ========================================================== */
+
+html body{
+  font-size:17px;
+  line-height:1.65;
+  font-weight:400;
+  letter-spacing:0;
+}
+
+/* Strong visual hierarchy for headings */
+html body h1{
+  font-size:clamp(38px,4.2vw,58px);
+  line-height:1.08;
+  font-weight:700;
+  letter-spacing:-0.02em;
+}
+html body h2{
+  font-size:clamp(30px,3.2vw,44px);
+  line-height:1.15;
+  font-weight:700;
+  letter-spacing:-0.015em;
+}
+html body h3{
+  font-size:clamp(23px,2.3vw,32px);
+  line-height:1.2;
+  font-weight:700;
+}
+html body h4{
+  font-size:clamp(19px,1.8vw,25px);
+  line-height:1.3;
+  font-weight:700;
+}
+html body h5,
+html body h6{
+  font-weight:700;
+}
+
+/* Emphasis should look intentional and professional */
+html body strong,
+html body b,
+html body .text-bold,
+html body .font-bold{
+  font-weight:700 !important;
+}
+
+/* Navigation and buttons */
+html body nav a,
+html body .navbar a,
+html body .nav-link,
+html body .nav-button,
+html body button,
+html body .button-primary,
+html body .button-secondary,
+html body input[type="submit"]{
+  font-weight:600;
+}
+
+html body .button-primary,
+html body .button-secondary,
+html body .nav-button{
+  font-size:15px;
+  line-height:1.2;
+}
+
+/* Common section labels / eyebrow text */
+html body .eyebrow,
+html body .section-label,
+html body .section-tag,
+html body .overline,
+html body .badge,
+html body .label{
+  font-weight:700;
+  letter-spacing:.06em;
+}
+
+/* Cards and important content */
+html body .card-title,
+html body .service-title,
+html body .program-title,
+html body .feature-title,
+html body .faq-question{
+  font-weight:700;
+}
+
+/* Forms */
+html body label{
+  font-size:15px;
+  font-weight:600;
+}
+html body input,
+html body select,
+html body textarea{
+  font-size:16px;
+  line-height:1.45;
+}
+
+/* Keep body copy readable rather than overly heavy */
+html body p,
+html body li{
+  font-weight:400;
+}
+
+@media screen and (max-width:767px){
+  html body{
+    font-size:16px;
+    line-height:1.6;
+  }
+  html body h1{
+    font-size:clamp(32px,9vw,42px);
+    line-height:1.1;
+  }
+  html body h2{
+    font-size:clamp(27px,7.5vw,36px);
+  }
+  html body h3{
+    font-size:clamp(21px,6vw,28px);
+  }
+  html body .button-primary,
+  html body .button-secondary,
+  html body .nav-button{
+    font-size:14px;
+    font-weight:600;
+  }
+}

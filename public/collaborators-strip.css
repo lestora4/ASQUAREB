@@ -1,0 +1,54 @@
+/* Our Collaborators — "Trusted Partners" showcase with slow auto-scrolling logo marquee (v4) */
+.asb-collab{position:relative;overflow:hidden;isolation:isolate;padding:84px 0 92px;text-align:center;
+  font-family:'Interdisplay',Geist,Arial,sans-serif;line-height:1.4;
+  background:linear-gradient(180deg,#f6faff 0%,#fff 100%);border-top:0}
+.asb-collab::before,.asb-collab::after{content:"";position:absolute;z-index:-1;pointer-events:none;border-radius:50%}
+.asb-collab::before{left:-150px;top:-170px;width:380px;height:380px;background:radial-gradient(circle at 65% 65%,#d9e8ff 0,#e6f0ff 55%,rgba(230,240,255,0) 72%)}
+.asb-collab::after{right:-170px;bottom:-190px;width:420px;height:420px;background:radial-gradient(circle at 35% 35%,#d9e8ff 0,#e6f0ff 55%,rgba(230,240,255,0) 72%)}
+.asb-collab__deco{position:absolute;inset:0;z-index:-1;pointer-events:none}
+.asb-collab__deco i{position:absolute;display:block}
+.asb-collab__deco i:nth-child(1){left:-90px;top:-130px;width:300px;height:300px;border:1.5px dashed #a9c9f0;border-radius:50%}
+.asb-collab__deco i:nth-child(2){right:-110px;bottom:-150px;width:320px;height:320px;border:1.5px dashed #a9c9f0;border-radius:50%}
+.asb-collab__deco i:nth-child(3){left:34px;top:150px;width:92px;height:72px;background:radial-gradient(#bcd5f4 2px,transparent 2.6px) 0 0/18px 18px}
+.asb-collab__deco i:nth-child(4){right:26px;top:210px;width:92px;height:72px;background:radial-gradient(#c8dcf6 2px,transparent 2.6px) 0 0/18px 18px}
+.asb-collab__container{position:relative;max-width:1400px;margin:0 auto;padding:0 24px}
+.asb-collab__head{max-width:760px;margin:0 auto}
+.asb-collab__tagrow{display:flex;align-items:center;justify-content:center;gap:14px;margin-bottom:22px}
+.asb-collab__tagrow::before,.asb-collab__tagrow::after{content:"";width:clamp(40px,10vw,130px);height:1.5px;background:linear-gradient(90deg,transparent,#a9c9f0)}
+.asb-collab__tagrow::after{background:linear-gradient(270deg,transparent,#a9c9f0)}
+.asb-collab__tag{display:inline-block;margin:0;padding:11px 28px;border:1.5px solid #cfe0f8;background:#eaf3ff;border-radius:999px;
+  font-size:13px;font-weight:700;letter-spacing:.28em;text-transform:uppercase;color:#1b6fe0;box-shadow:0 8px 20px -14px rgba(27,111,224,.6)}
+.asb-collab__title{margin:0 0 16px;font-size:clamp(34px,4.8vw,62px);line-height:1.1;font-weight:800;letter-spacing:-.025em;color:#1378bc}
+.asb-collab__hl{background:linear-gradient(90deg,#1565e0,#2a8cf2);-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent}
+.asb-collab__sub{margin:0 auto;max-width:960px;font-size:clamp(15px,1.4vw,19px);line-height:1.6;color:#66788e}
+.asb-collab__rule{display:none}
+
+/* marquee */
+.asb-collab__marquee{position:relative;margin-top:50px;overflow:hidden;
+  -webkit-mask-image:linear-gradient(90deg,transparent 0,#000 7%,#000 93%,transparent 100%);mask-image:linear-gradient(90deg,transparent 0,#000 7%,#000 93%,transparent 100%)}
+.asb-collab__grid{list-style:none;margin:0;padding:14px 0 26px;display:flex;flex-wrap:wrap;justify-content:center;gap:22px}
+.asb-collab__grid.is-marquee{flex-wrap:nowrap;justify-content:flex-start;gap:0;width:max-content;animation:asbCollabScroll 52s linear infinite;will-change:transform}
+.asb-collab__grid.is-marquee .asb-collab__item{margin-right:22px}
+@keyframes asbCollabScroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.asb-collab__item{flex:0 0 auto;margin:0;padding:0}
+.asb-collab__card{position:relative;display:flex;align-items:center;justify-content:center;height:112px;min-width:196px;padding:0 32px;background:#fff;
+  border:1px solid rgba(207,224,245,.75);border-radius:20px;box-shadow:0 16px 34px -24px rgba(30,80,150,.4);text-decoration:none;
+  transition:transform .35s cubic-bezier(.2,.8,.2,1),box-shadow .35s ease,border-color .35s ease}
+a.asb-collab__card:hover,a.asb-collab__card:focus-visible{transform:translateY(-6px);border-color:#8db8ee;box-shadow:0 24px 40px -22px rgba(27,111,224,.5)}
+a.asb-collab__card:focus-visible{outline:3px solid #c9a227;outline-offset:3px}
+.asb-collab__card picture{display:flex;align-items:center;justify-content:center}
+.asb-collab__logo{display:block;width:auto;height:var(--lh,46px);max-width:200px;object-fit:contain;transition:transform .35s ease}
+a.asb-collab__card:hover .asb-collab__logo{transform:scale(1.05)}
+
+@media (max-width:860px){
+  .asb-collab{padding:60px 0 66px}
+  .asb-collab__marquee{margin-top:36px}
+  .asb-collab__card{height:92px;min-width:156px;padding:0 24px;border-radius:16px}
+  .asb-collab__logo{height:calc(var(--lh,46px)*.8);max-width:150px}
+  .asb-collab__tag{font-size:11px;letter-spacing:.2em;padding:9px 20px}
+  .asb-collab__deco i:nth-child(3),.asb-collab__deco i:nth-child(4){display:none}
+}
+@media (prefers-reduced-motion:reduce){
+  .asb-collab__grid.is-marquee{animation:none}
+  .asb-collab__card,.asb-collab__logo{transition:none}
+}

@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<title>Admin Login - ASQUAREB</title>
+<link href="assets/images/favicon.ico" rel="shortcut icon" type="image/x-icon"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link href="https://fonts.gstatic.com" rel="preconnect" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+<style>
+    :root {
+        --navy-950: #08324f;
+        --navy-900: #08324f;
+        --navy-800: #0e5a8f;
+        --accent: #3d6bff;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+        font-family: 'Geist', -apple-system, BlinkMacSystemFont, sans-serif;
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background:
+            radial-gradient(900px 500px at 15% 10%, rgba(61, 107, 255, 0.25), transparent 60%),
+            radial-gradient(900px 500px at 85% 90%, rgba(61, 107, 255, 0.18), transparent 60%),
+            linear-gradient(190deg, var(--navy-950) 0%, var(--navy-900) 55%, var(--navy-800) 100%);
+        padding: 24px;
+    }
+
+    .login-card {
+        width: 100%;
+        max-width: 400px;
+        background: #ffffff;
+        border-radius: 24px;
+        padding: 44px 40px;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
+        border: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    .login-logo {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 24px;
+    }
+
+    .login-logo img {
+        height: 48px;
+        width: auto;
+    }
+
+    .login-card h1 {
+        text-align: center;
+        font-size: 22px;
+        font-weight: 800;
+        color: var(--navy-900);
+        margin-bottom: 4px;
+    }
+
+    .login-card p.subtitle {
+        text-align: center;
+        font-size: 14px;
+        color: #666;
+        margin-bottom: 28px;
+    }
+
+    .field {
+        margin-bottom: 18px;
+    }
+
+    .field label {
+        display: block;
+        font-weight: 500;
+        font-size: 14px;
+        color: #1d1d1d;
+        margin-bottom: 6px;
+    }
+
+    .field input {
+        width: 100%;
+        padding: 12px 16px;
+        border: 1px solid rgba(8, 44, 68, 0.15);
+        border-radius: 10px;
+        font-size: 15px;
+        background: #fafafa;
+        color: #1d1d1d;
+        transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        font-family: inherit;
+    }
+
+    .field input:focus {
+        outline: none;
+        border-color: var(--accent);
+        box-shadow: 0 0 0 3px rgba(61, 107, 255, 0.12);
+        background: #ffffff;
+    }
+
+    .login-btn {
+        width: 100%;
+        background: var(--navy-900);
+        color: #ffffff;
+        border: 2px solid var(--navy-900);
+        padding: 13px 0;
+        border-radius: 40px;
+        font-weight: 700;
+        font-size: 15px;
+        cursor: pointer;
+        margin-top: 6px;
+        transition: all 0.3s ease;
+    }
+
+    .login-btn:hover {
+        background: var(--accent);
+        border-color: var(--accent);
+    }
+
+    .login-btn:disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
+    }
+
+    #error-msg {
+        display: none;
+        margin-top: 16px;
+        padding: 12px 16px;
+        background: #fdecea;
+        border: 1px solid #f5c2c0;
+        border-left: 4px solid #c62828;
+        border-radius: 10px;
+        color: #b02a20;
+        font-size: 13px;
+        text-align: center;
+    }
+
+    .back-link {
+        display: block;
+        text-align: center;
+        margin-top: 24px;
+        font-size: 13px;
+        color: #666;
+        text-decoration: none;
+    }
+
+    .back-link:hover {
+        color: var(--navy-900);
+    }
+</style>
+<style>/* ============================================================
+   MOBILE DROPDOWN MENU FIX — WHITE BACKGROUND WITH VISIBLE TEXT
+   ============================================================ */
+
+@media screen and (max-width: 991px) {
+  /* Force dropdown menu to be white on mobile */
+  html body header#asbHeader nav#asbNav.asb-header__nav .asb-header__dropdown-menu {
+    background: #ffffff !important;
+    background-color: #ffffff !important;
+    background-image: none !important;
+    border: 1px solid rgba(19, 120, 188, 0.10) !important;
+    border-radius: 10px !important;
+    padding: 8px !important;
+    margin-top: 4px !important;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08) !important;
+    position: static !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    transform: none !important;
+    display: none !important;
+    width: 100% !important;
+    min-width: auto !important;
+  }
+
+  /* Show dropdown when parent has .is-open */
+  html body header#asbHeader nav#asbNav.asb-header__nav .asb-header__dropdown.is-open .asb-header__dropdown-menu {
+    display: block !important;
+  }
+
+  /* Dropdown items - white background, blue text, visible */
+  html body header#asbHeader nav#asbNav.asb-header__nav .asb-header__dropdown-item {
+    color: #1378bc !important;
+    background: #ffffff !important;
+    background-color: #ffffff !important;
+    padding: 10px 14px !important;
+    border-radius: 6px !important;
+    margin-bottom: 3px !important;
+    border-bottom: 1px solid rgba(19, 120, 188, 0.06) !important;
+    font-weight: 500 !important;
+    font-size: 14px !important;
+    display: block !important;
+    text-decoration: none !important;
+    transition: background 0.2s ease, padding-left 0.2s ease !important;
+  }
+
+  /* Remove border from last item */
+  html body header#asbHeader nav#asbNav.asb-header__nav .asb-header__dropdown-item:last-child {
+    border-bottom: none !important;
+    margin-bottom: 0 !important;
+    background: rgba(19, 120, 188, 0.04) !important;
+    font-weight: 600 !important;
+    border-radius: 6px !important;
+  }
+
+  /* Hover state */
+  html body header#asbHeader nav#asbNav.asb-header__nav .asb-header__dropdown-item:hover {
+    background: rgba(19, 120, 188, 0.06) !important;
+    padding-left: 18px !important;
+  }
+
+  /* Dropdown toggle text color */
+  html body header#asbHeader nav#asbNav.asb-header__nav .asb-header__dropdown-toggle {
+    color: #1378bc !important;
+  }
+
+  /* Dropdown arrow color */
+  html body header#asbHeader nav#asbNav.asb-header__nav .asb-header__dropdown-arrow {
+    stroke: #1378bc !important;
+  }
+
+  /* Override any dark gradient from desktop */
+  html body header#asbHeader nav#asbNav.asb-header__nav .asb-header__dropdown-menu::before {
+    display: none !important;
+  }
+}
+
+/* ============================================================
+   EXTRA SMALL PHONES (max-width: 479px)
+   ============================================================ */
+@media screen and (max-width: 479px) {
+  html body header#asbHeader nav#asbNav.asb-header__nav .asb-header__dropdown-item {
+    font-size: 13px !important;
+    padding: 8px 12px !important;
+  }
+}</style><link rel="preload" href="fonts/Cambria-Regular.woff2" as="font" type="font/woff2" crossorigin>
+<link href="site-font.css?v=1" rel="stylesheet" type="text/css">
+</head>
+<body>
+<div class="login-card">
+    <div class="login-logo">
+        <img src="logo.webp" alt="ASQUAREB Logo"/>
+    </div>
+    <h1>Admin Login</h1>
+    <p class="subtitle">Sign in to access the ASQUAREB dashboard</p>
+
+    <form id="loginForm">
+        <div class="field">
+            <label for="username">Username</label>
+            <input id="username" name="username" type="text" autocomplete="username" required/>
+        </div>
+        <div class="field">
+            <label for="password">Password</label>
+            <input id="password" name="password" type="password" autocomplete="current-password" required/>
+        </div>
+        <button class="login-btn" type="submit">Log In</button>
+        <div id="error-msg"></div>
+    </form>
+
+    <a class="back-link" href="index.html">← Back to website</a>
+</div>
+
+<script>
+document.getElementById('loginForm').addEventListener('submit', async function (e) {
+    e.preventDefault();
+
+    const username = document.getElementById('username').value.trim();
+    const password = document.getElementById('password').value;
+    const errorMsg = document.getElementById('error-msg');
+    const btn = this.querySelector('.login-btn');
+
+    errorMsg.style.display = 'none';
+    btn.disabled = true;
+    btn.textContent = 'Logging in...';
+
+    try {
+        const res = await fetch('/api/admin-login', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ username, password })
+        });
+        const data = await res.json();
+
+        if (data.success) {
+            localStorage.setItem('asb_admin_token', data.token);
+            localStorage.setItem('asb_admin_username', data.username);
+            localStorage.setItem('asb_admin_role', data.role || '');
+            window.location.href = 'dashboard.html';
+        } else {
+            errorMsg.textContent = data.message || 'Invalid username or password.';
+            errorMsg.style.display = 'block';
+        }
+    } catch (err) {
+        errorMsg.textContent = 'Could not reach the server. Please try again.';
+        errorMsg.style.display = 'block';
+    } finally {
+        btn.disabled = false;
+        btn.textContent = 'Log In';
+    }
+});
+</script>
+<style id="asb-nav-dark">/* nav menu: logo blue (#1078b8) to match the AsquareB logo */
+html body header#asbHeader .asb-header__link,
+html body header#asbHeader .asb-header__dropdown-toggle,
+html body header#asbHeader nav#asbNav .asb-header__link,
+html body header#asbHeader nav#asbNav .asb-header__dropdown-toggle,
+html body header#asbHeader nav#asbNav.asb-header__nav .asb-header__link,
+html body header#asbHeader nav#asbNav.asb-header__nav .asb-header__dropdown-toggle,
+html body header#asbHeader .asb-header__dropdown-item{color:#1078b8 !important;font-weight:600 !important}
+html body header#asbHeader nav#asbNav .asb-header__link:hover,
+html body header#asbHeader nav#asbNav .asb-header__dropdown-toggle:hover,
+html body header#asbHeader .asb-header__dropdown-item:hover{color:#0b5a8c !important}
+html body header#asbHeader .asb-header__dropdown-arrow{color:#1078b8 !important;stroke:#1078b8 !important}
+@media (min-width:992px){
+html body header#asbHeader .asb-header__dropdown-item,
+html body header#asbHeader nav#asbNav .asb-header__dropdown-item{color:#ffffff !important;font-weight:500 !important}
+html body header#asbHeader .asb-header__dropdown-item:hover,
+html body header#asbHeader nav#asbNav .asb-header__dropdown-item:hover{color:#ffffff !important;background:rgba(255,255,255,.14) !important}
+}
+</style>
+</body>
+</html>

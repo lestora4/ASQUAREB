@@ -1,0 +1,46 @@
+/* Footer: official social icons + policy links */
+.asb-socials-v2{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
+.asb-socials-v2 a{display:inline-flex;align-items:center;justify-content:center;width:38px;height:38px;border-radius:50%;background:#0c3b5c;transition:transform .2s,background .2s}
+.asb-socials-v2 a:hover,.asb-socials-v2 a:focus-visible{transform:translateY(-3px);background:#C9A227;outline:none}
+.asb-socials-v2 svg{width:18px;height:18px;display:block}
+.asb-socials-v2 .s-instagram{background:#d6249f}.asb-socials-v2 .s-facebook{background:#1877f2}.asb-socials-v2 .s-tumblr{background:#35465c}
+.asb-socials-v2 .s-x{background:#000}.asb-socials-v2 .s-youtube{background:#f00}.asb-socials-v2 .s-linkedin{background:#0a66c2}
+.asb-socials-v2 a:hover{background:#C9A227}
+.asb-footer__policies{display:flex;flex-wrap:wrap;gap:6px 18px;justify-content:center;align-items:center;margin:0 0 16px;padding:0;font-size:14px}
+.asb-footer__policies strong{font-weight:600;opacity:.85}
+.asb-footer__policies a{color:inherit;text-decoration:none;opacity:.9}
+.asb-footer__policies a:hover{text-decoration:underline;opacity:1}
+.follow-us{margin-top:26px}
+.follow-us h3{margin:0 0 4px;font-size:20px;color:#0e5a8f}
+.follow-us p{margin:0;font-size:14.5px;color:#444}
+.follow-us .asb-socials-v2{margin-top:12px}
+
+/* Privacy Policy acknowledgement checkbox (forms) */
+.privacy-consent{display:flex;align-items:flex-start;gap:10px;margin:14px 0;font-size:13.5px;line-height:1.5;color:#333;text-align:left;cursor:pointer;width:100%}
+.privacy-consent input[type=checkbox]{flex:0 0 auto;width:18px;height:18px;min-width:18px;margin:2px 0 0;padding:0;accent-color:#0e5a8f;cursor:pointer}
+.privacy-consent a{color:#0e5a8f;text-decoration:underline}
+.cr-submiterr{margin-top:10px}
+
+/* Footer: 5-column layout (Brand | Quick Links | Our Programs | Terms & Conditions | Contact) */
+.asb-footer__grid.asb-footer__grid--4col.asb-footer__grid--5col{grid-template-columns:1.45fr .85fr 1.2fr 1.2fr 1.35fr;gap:34px}
+@media (max-width:1180px){
+  .asb-footer__grid.asb-footer__grid--4col.asb-footer__grid--5col{grid-template-columns:repeat(3,1fr);gap:32px}
+}
+@media (max-width:992px){
+  .asb-footer__grid.asb-footer__grid--4col.asb-footer__grid--5col{grid-template-columns:1fr 1fr;gap:30px}
+}
+@media (max-width:640px){
+  .asb-footer__grid.asb-footer__grid--4col.asb-footer__grid--5col{grid-template-columns:1fr;gap:24px}
+}
+
+/* Social icons: official brand glyphs on brand colours */
+.asb-socials-v2{gap:7px}
+.asb-socials-v2 a{width:36px;height:36px}
+.asb-socials-v2 svg{width:19px;height:19px}
+.asb-socials-v2 .s-instagram{background:radial-gradient(circle at 30% 107%,#fdf497 0%,#fdf497 5%,#fd5949 45%,#d6249f 60%,#285aeb 90%)}
+.asb-socials-v2 .s-facebook{background:#0866ff}
+.asb-socials-v2 .s-tumblr{background:#36465d}
+.asb-socials-v2 .s-x{background:#000}
+.asb-socials-v2 .s-youtube{background:#f00}
+.asb-socials-v2 .s-linkedin{background:#0a66c2}
+.asb-socials-v2 a:hover,.asb-socials-v2 a:focus-visible{background:#C9A227}

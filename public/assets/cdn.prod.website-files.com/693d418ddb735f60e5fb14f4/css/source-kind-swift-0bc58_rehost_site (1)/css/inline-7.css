@@ -1,0 +1,12 @@
+
+  .logo img {
+    width: 170px;
+  }
+  .logo-area__middle--logo-image {
+    max-width: 170px;
+  }
+  @media (max-width: 767.98px) {
+    .logo img {
+      width: 130px;
+    }
+  }

@@ -1,0 +1,37 @@
+
+.jdgm-rev__icon::after { content: '\e001'; }
+.jdgm-rev__icon::after,
+.jdgm-rev__buyer-badge {
+  display: inline-block;
+  color: #ffffff;
+  background-color: rgb(23, 23, 23);
+}
+.jdgm-rev__buyer-badge:before { content: 'Verified'; }
+
+.jdgm-rev-widg__title { visibility: unset; }
+.jdgm-rev-widg__summary-text { visibility: unset; }
+.jdgm-prev-badge__text { visibility: unset; }
+
+.jdgm-quest__body:before { content: 'Question:'; }
+.jdgm-ans__body:before { content: 'Answer:'; }
+
+.jdgm-star { color: #f6a529; }
+
+.jdgm-ask-question-btn,
+.jdgm-write-rev-link,
+.jdgm-all-reviews-rating-wrapper,
+.jdgm-carousel-wrapper a,
+.jdgm-rev__prod-link,
+.jdgm-all-reviews-text a,
+.jdgm-carousel-item__product,
+.jdgm-carousel-number-of-reviews,
+.jdgm-revs-tab__url { color: rgb(23, 23, 23); }
+
+a.jdgm-write-rev-link {
+    color: rgb(23, 23, 23);
+    background-color: #ffffff;
+}
+
+/* Legacy selectors, to keep old CSS specificities */
+.jdgm-preview-badge .jdgm-star { color: #f6a529; }
+.jdgm-histogram .jdgm-star { color: #f6a529; }

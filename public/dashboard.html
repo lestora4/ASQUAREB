@@ -1,0 +1,1010 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<title>Dashboard - ASQUAREB</title>
+<link href="assets/images/favicon.ico" rel="shortcut icon" type="image/x-icon"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link href="https://fonts.gstatic.com" rel="preconnect" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+<style>
+    :root {
+        --navy-950: #08324f;
+        --navy-900: #08324f;
+        --navy-800: #0e5a8f;
+        --navy-700: #105f94;
+        --accent: #3d6bff;
+        --accent-soft: rgba(61, 107, 255, 0.14);
+        --sidebar-w: 250px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+        font-family: 'Geist', -apple-system, BlinkMacSystemFont, sans-serif;
+        background: #f2f5fc;
+        color: #1a1d29;
+        min-height: 100vh;
+    }
+
+    /* ---- Sidebar ---- */
+    .sidebar {
+        position: fixed;
+        top: 0; left: 0; bottom: 0;
+        width: var(--sidebar-w);
+        background: linear-gradient(190deg, var(--navy-950) 0%, var(--navy-900) 55%, var(--navy-800) 100%);
+        color: #fff;
+        display: flex;
+        flex-direction: column;
+        z-index: 20;
+        transition: transform 0.25s ease;
+    }
+
+    .sidebar-brand {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 24px 22px;
+        border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .sidebar-brand img {
+        height: 32px;
+        width: auto;
+        border-radius: 6px;
+        background: #fff;
+        padding: 2px;
+    }
+
+    .sidebar-brand span {
+        font-weight: 700;
+        font-size: 15px;
+        letter-spacing: 0.2px;
+    }
+
+    .sidebar-nav {
+        flex: 1;
+        padding: 18px 12px;
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+        overflow-y: auto;
+    }
+
+    .nav-section-label {
+        font-size: 11px;
+        text-transform: uppercase;
+        letter-spacing: 0.8px;
+        color: rgba(255,255,255,0.4);
+        padding: 10px 12px 6px;
+    }
+
+    .nav-item {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 11px 14px;
+        border-radius: 10px;
+        color: rgba(255,255,255,0.75);
+        cursor: pointer;
+        font-size: 14px;
+        font-weight: 500;
+        transition: background 0.15s ease, color 0.15s ease;
+        border: 1px solid transparent;
+    }
+
+    .nav-item .icon {
+        width: 18px;
+        height: 18px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+    }
+
+    .nav-item .icon svg {
+        width: 18px;
+        height: 18px;
+        stroke: currentColor;
+        fill: none;
+        stroke-width: 1.8;
+    }
+
+    .nav-item .label {
+        flex: 1;
+    }
+
+    .nav-item .badge {
+        background: rgba(255,255,255,0.12);
+        color: #fff;
+        font-size: 11px;
+        font-weight: 700;
+        padding: 2px 8px;
+        border-radius: 20px;
+        min-width: 22px;
+        text-align: center;
+    }
+
+    .nav-item:hover {
+        background: rgba(255,255,255,0.06);
+        color: #fff;
+    }
+
+    .nav-item.active {
+        background: var(--accent);
+        color: #fff;
+        box-shadow: 0 4px 14px rgba(61, 107, 255, 0.35);
+    }
+
+    .nav-item.active .badge {
+        background: rgba(255,255,255,0.25);
+    }
+
+    .sidebar-footer {
+        padding: 16px 22px 22px;
+        border-top: 1px solid rgba(255,255,255,0.08);
+        font-size: 12px;
+        color: rgba(255,255,255,0.45);
+    }
+
+    /* ---- Main area ---- */
+    .main {
+        margin-left: var(--sidebar-w);
+        min-height: 100vh;
+    }
+
+    .topbar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 16px 32px;
+        background: #ffffff;
+        border-bottom: 1px solid rgba(8, 44, 68, 0.08);
+        position: sticky;
+        top: 0;
+        z-index: 10;
+    }
+
+    .topbar-left h2 {
+        font-size: 18px;
+        font-weight: 700;
+        color: var(--navy-900);
+    }
+
+    .topbar-left p {
+        font-size: 12.5px;
+        color: #777;
+        margin-top: 2px;
+    }
+
+    .topbar-right {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        font-size: 14px;
+        color: #444;
+    }
+
+    .admin-chip {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        background: var(--accent-soft);
+        color: var(--navy-900);
+        padding: 6px 14px;
+        border-radius: 30px;
+        font-size: 13px;
+        font-weight: 600;
+    }
+
+    .logout-btn {
+        background: transparent;
+        border: 1px solid rgba(8, 44, 68, 0.2);
+        color: var(--navy-900);
+        padding: 8px 18px;
+        border-radius: 30px;
+        font-size: 13px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.2s ease;
+    }
+
+    .logout-btn:hover {
+        background: var(--navy-900);
+        color: #ffffff;
+        border-color: var(--navy-900);
+    }
+
+    .wrap {
+        max-width: 1300px;
+        margin: 0 auto;
+        padding: 28px 32px 48px;
+    }
+
+    /* ---- Summary strip ---- */
+    .summary-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+        gap: 16px;
+        margin-bottom: 26px;
+    }
+
+    .summary-card {
+        background: #ffffff;
+        border-radius: 16px;
+        padding: 20px 22px;
+        border: 1px solid rgba(8, 44, 68, 0.06);
+        box-shadow: 0 4px 16px rgba(8, 44, 68, 0.05);
+    }
+
+    .summary-card .count {
+        font-size: 28px;
+        font-weight: 800;
+        color: var(--navy-900);
+    }
+
+    .summary-card .label {
+        font-size: 13px;
+        color: #666;
+        margin-top: 4px;
+    }
+
+    /* ---- Filter bar ---- */
+    .filter-bar {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        align-items: end;
+        background: #ffffff;
+        border-radius: 16px;
+        padding: 18px 20px;
+        border: 1px solid rgba(8, 44, 68, 0.06);
+        margin-bottom: 20px;
+    }
+
+    .filter-bar .field {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+    }
+
+    .filter-bar label {
+        font-size: 12px;
+        font-weight: 500;
+        color: #666;
+    }
+
+    .filter-bar input,
+    .filter-bar select {
+        padding: 9px 12px;
+        border: 1px solid rgba(8, 44, 68, 0.15);
+        border-radius: 8px;
+        font-size: 13px;
+        background: #fafafa;
+        min-width: 150px;
+        font-family: inherit;
+    }
+
+    .filter-bar button {
+        padding: 10px 20px;
+        border-radius: 30px;
+        border: 2px solid var(--navy-900);
+        background: var(--navy-900);
+        color: #fff;
+        font-weight: 600;
+        font-size: 13px;
+        cursor: pointer;
+    }
+
+    .filter-bar button.secondary {
+        background: transparent;
+        color: var(--navy-900);
+    }
+
+    /* ---- Table ---- */
+    .table-wrap {
+        background: #ffffff;
+        border-radius: 16px;
+        border: 1px solid rgba(8, 44, 68, 0.06);
+        overflow-x: auto;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 13px;
+    }
+
+    th, td {
+        text-align: left;
+        padding: 12px 16px;
+        border-bottom: 1px solid rgba(8, 44, 68, 0.06);
+        white-space: nowrap;
+    }
+
+    th {
+        background: #f4f7ff;
+        color: var(--navy-900);
+        font-weight: 600;
+        position: sticky;
+        top: 0;
+    }
+
+    tr:hover td {
+        background: #fafcff;
+    }
+
+    .empty-state, .loading-state {
+        padding: 60px 20px;
+        text-align: center;
+        color: #888;
+        font-size: 14px;
+    }
+
+    /* ---- Mobile sidebar toggle ---- */
+    .menu-toggle {
+        display: none;
+        background: transparent;
+        border: none;
+        cursor: pointer;
+        padding: 6px;
+    }
+
+    .menu-toggle svg { width: 22px; height: 22px; stroke: var(--navy-900); }
+
+    @media (max-width: 900px) {
+        .sidebar { transform: translateX(-100%); }
+        .sidebar.open { transform: translateX(0); box-shadow: 0 0 40px rgba(0,0,0,0.35); }
+        .main { margin-left: 0; }
+        .menu-toggle { display: inline-flex; }
+    }
+
+    /* ---- Login gate ---- */
+    #gate {
+        position: fixed;
+        inset: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: linear-gradient(190deg, var(--navy-950) 0%, var(--navy-800) 100%);
+        z-index: 100;
+    }
+
+    #gate p { color: rgba(255,255,255,0.8); font-size: 14px; }
+</style>
+<style>/* ============================================================
+   MOBILE DROPDOWN MENU FIX — WHITE BACKGROUND WITH VISIBLE TEXT
+   ============================================================ */
+
+@media screen and (max-width: 991px) {
+  /* Force dropdown menu to be white on mobile */
+  html body header#asbHeader nav#asbNav.asb-header__nav .asb-header__dropdown-menu {
+    background: #ffffff !important;
+    background-color: #ffffff !important;
+    background-image: none !important;
+    border: 1px solid rgba(19, 120, 188, 0.10) !important;
+    border-radius: 10px !important;
+    padding: 8px !important;
+    margin-top: 4px !important;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08) !important;
+    position: static !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    transform: none !important;
+    display: none !important;
+    width: 100% !important;
+    min-width: auto !important;
+  }
+
+  /* Show dropdown when parent has .is-open */
+  html body header#asbHeader nav#asbNav.asb-header__nav .asb-header__dropdown.is-open .asb-header__dropdown-menu {
+    display: block !important;
+  }
+
+  /* Dropdown items - white background, blue text, visible */
+  html body header#asbHeader nav#asbNav.asb-header__nav .asb-header__dropdown-item {
+    color: #1378bc !important;
+    background: #ffffff !important;
+    background-color: #ffffff !important;
+    padding: 10px 14px !important;
+    border-radius: 6px !important;
+    margin-bottom: 3px !important;
+    border-bottom: 1px solid rgba(19, 120, 188, 0.06) !important;
+    font-weight: 500 !important;
+    font-size: 14px !important;
+    display: block !important;
+    text-decoration: none !important;
+    transition: background 0.2s ease, padding-left 0.2s ease !important;
+  }
+
+  /* Remove border from last item */
+  html body header#asbHeader nav#asbNav.asb-header__nav .asb-header__dropdown-item:last-child {
+    border-bottom: none !important;
+    margin-bottom: 0 !important;
+    background: rgba(19, 120, 188, 0.04) !important;
+    font-weight: 600 !important;
+    border-radius: 6px !important;
+  }
+
+  /* Hover state */
+  html body header#asbHeader nav#asbNav.asb-header__nav .asb-header__dropdown-item:hover {
+    background: rgba(19, 120, 188, 0.06) !important;
+    padding-left: 18px !important;
+  }
+
+  /* Dropdown toggle text color */
+  html body header#asbHeader nav#asbNav.asb-header__nav .asb-header__dropdown-toggle {
+    color: #1378bc !important;
+  }
+
+  /* Dropdown arrow color */
+  html body header#asbHeader nav#asbNav.asb-header__nav .asb-header__dropdown-arrow {
+    stroke: #1378bc !important;
+  }
+
+  /* Override any dark gradient from desktop */
+  html body header#asbHeader nav#asbNav.asb-header__nav .asb-header__dropdown-menu::before {
+    display: none !important;
+  }
+}
+
+/* ============================================================
+   EXTRA SMALL PHONES (max-width: 479px)
+   ============================================================ */
+@media screen and (max-width: 479px) {
+  html body header#asbHeader nav#asbNav.asb-header__nav .asb-header__dropdown-item {
+    font-size: 13px !important;
+    padding: 8px 12px !important;
+  }
+}</style><link rel="preload" href="fonts/Cambria-Regular.woff2" as="font" type="font/woff2" crossorigin>
+<link href="site-font.css?v=1" rel="stylesheet" type="text/css">
+</head>
+<body>
+
+<div id="gate"><p>Checking session…</p></div>
+
+<div id="app" style="display:none">
+
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-brand">
+            <img src="logo.webp" alt="ASQUAREB Logo"/>
+            <span>ASQUAREB Admin</span>
+        </div>
+
+        <nav class="sidebar-nav" id="sidebarNav">
+            <div class="nav-section-label">Leads &amp; Messages</div>
+            <!-- nav items injected here -->
+        </nav>
+
+        <div class="sidebar-footer">ASQUAREB Education CRM</div>
+    </aside>
+
+    <div class="main">
+        <div class="topbar">
+            <div class="topbar-left" style="display:flex; align-items:center; gap:14px;">
+                <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">
+                    <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+                </button>
+                <div>
+                    <h2 id="pageTitle">Popup Leads</h2>
+                    <p id="pageSubtitle">All leads captured from the site popup form</p>
+                </div>
+            </div>
+            <div class="topbar-right">
+                <div class="admin-chip">
+                    <span id="adminName"></span>
+                </div>
+                <button class="logout-btn" id="logoutBtn">Log Out</button>
+            </div>
+        </div>
+
+        <div class="wrap">
+            <div class="summary-grid" id="summaryGrid"></div>
+
+            <div class="filter-bar">
+                <div class="field">
+                    <label for="searchInput" id="searchLabel">Search (name / email)</label>
+                    <input id="searchInput" type="text" placeholder="Search..."/>
+                </div>
+                <div class="field">
+                    <label for="fromDate">From</label>
+                    <input id="fromDate" type="date"/>
+                </div>
+                <div class="field">
+                    <label for="toDate">To</label>
+                    <input id="toDate" type="date"/>
+                </div>
+                <div class="field" id="typeFieldWrap" style="display:none">
+                    <label for="typeSelect" id="typeLabel">Filter</label>
+                    <select id="typeSelect"><option value="">All</option></select>
+                </div>
+                <button id="applyFilters">Apply</button>
+                <button class="secondary" id="clearFilters" type="button">Clear</button>
+                <button class="secondary" id="downloadCsv" type="button" title="Download the filtered records as CSV">Download CSV</button>
+                <button class="secondary" id="downloadPdf" type="button" title="Download the filtered records as PDF">Download PDF</button>
+            </div>
+
+            <div class="table-wrap">
+                <div id="tableContainer" class="loading-state">Loading…</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+const API_BASE = '/api';
+let currentTable = 'global_education';
+
+// Columns that are internal/no longer needed in the dashboard view
+// Columns hidden everywhere, regardless of table
+const HIDDEN_COLUMNS = ['id', 'source', 'page_url', 'pageurl'];
+
+// Columns hidden only for specific tables — e.g. leftover/unused legacy
+// fields on enquiry_leads that the current form never populates
+const HIDDEN_COLUMNS_BY_TABLE = {
+    global_education: ['source_page'],
+    careers: ['application_id', 'email_sent'],
+    partnership: ['reference', 'proposal_size'],
+    enquiry: ['first_name', 'last_name', 'type', 'message', 'course', 'branch', 'learning_mode']
+};
+
+const TABLE_CONFIG = {
+    global_education: {
+        label: 'Global Education',
+        subtitle: 'Registrations from the Global Education & Admissions registration page',
+        searchLabel: 'Search (name / email / mobile / pincode)',
+        typeLabel: 'Country code',
+        icon: '<circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15 15 0 0 1 0 20 15 15 0 0 1 0-20Z"/>'
+    },
+    careers: {
+        label: 'Careers',
+        subtitle: 'Job applications submitted from the Careers page',
+        searchLabel: 'Search (name / email / mobile / city / role)',
+        typeLabel: 'Role',
+        icon: '<rect x="3" y="7" width="18" height="13" rx="2"/><path d="M9 7V5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2M3 13h18"/>'
+    },
+    partnership: {
+        label: 'Partnership Enquiries',
+        subtitle: 'Proposals from Campus Connect, Orbit Alliance and Orbit Innovate partnership forms',
+        searchLabel: 'Search (organisation / contact / email / phone)',
+        typeLabel: 'Partnership type',
+        icon: '<path d="M11 17l-1.5 1.5a2.1 2.1 0 0 1-3-3L9 12"/><path d="M13 7l1.5-1.5a2.1 2.1 0 0 1 3 3L15 11"/><path d="M8 12l4-4 4 4"/>'
+    },
+    popup: {
+        label: 'Popup Enquiries',
+        subtitle: 'Leads captured from the site popup form',
+        icon: '<path d="M4 4h16v12H7l-3 3V4z"/>'
+    },
+    enquiry: {
+        label: 'Enquiry Form',
+        subtitle: 'Admission enquiries submitted from the enquiry page',
+        typeLabel: 'Preferred Program',
+        icon: '<path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/>'
+    },
+    contact: {
+        label: 'Contact Messages',
+        subtitle: 'Messages submitted through the contact page',
+        icon: '<path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>'
+    },
+    newsletter: {
+        label: 'Newsletter',
+        subtitle: 'Subscribers who signed up for the newsletter',
+        icon: '<rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/>'
+    },
+    chatbot: {
+        label: 'Chatbot Leads',
+        subtitle: 'Leads captured by the website chatbot',
+        icon: '<rect x="4" y="6" width="16" height="12" rx="3"/><path d="M9 12h.01M15 12h.01M8 3v3M16 3v3"/>'
+    }
+};
+
+function getToken() {
+    return localStorage.getItem('asb_admin_token');
+}
+
+function authHeaders() {
+    return { 'Authorization': 'Bearer ' + getToken() };
+}
+
+async function checkSession() {
+    const token = getToken();
+    if (!token) {
+        window.location.href = 'login.html';
+        return;
+    }
+    try {
+        const res = await fetch(`${API_BASE}/dashboard-data?table=summary`, { headers: authHeaders() });
+        if (res.status === 401) {
+            localStorage.removeItem('asb_admin_token');
+            window.location.href = 'login.html';
+            return;
+        }
+        const data = await res.json();
+        document.getElementById('gate').style.display = 'none';
+        document.getElementById('app').style.display = 'block';
+        document.getElementById('adminName').textContent = localStorage.getItem('asb_admin_username') || 'Admin';
+        buildSidebar(data.summary || {});
+        renderSummary(data.summary || {});
+        loadTable(currentTable);
+    } catch (err) {
+        document.getElementById('gate').innerHTML = '<p style="color:#ffb4ab;">Could not reach the server. Please refresh.</p>';
+    }
+}
+
+function buildSidebar(summary) {
+    const nav = document.getElementById('sidebarNav');
+    nav.querySelectorAll('.nav-item').forEach(el => el.remove());
+
+    Object.keys(TABLE_CONFIG).forEach(key => {
+        const cfg = TABLE_CONFIG[key];
+        const item = document.createElement('div');
+        item.className = 'nav-item' + (key === currentTable ? ' active' : '');
+        item.dataset.table = key;
+        item.innerHTML = `
+            <span class="icon"><svg viewBox="0 0 24 24">${cfg.icon}</svg></span>
+            <span class="label">${cfg.label}</span>
+            <span class="badge">${summary[key] ?? 0}</span>
+        `;
+        item.addEventListener('click', () => {
+            currentTable = key;
+            document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
+            item.classList.add('active');
+            document.getElementById('pageTitle').textContent = cfg.label;
+            document.getElementById('pageSubtitle').textContent = cfg.subtitle;
+            applyLabels(cfg);
+            resetFilters();
+            loadTable(currentTable);
+            document.getElementById('sidebar').classList.remove('open');
+        });
+        nav.appendChild(item);
+    });
+
+    const cfg = TABLE_CONFIG[currentTable];
+    document.getElementById('pageTitle').textContent = cfg.label;
+    document.getElementById('pageSubtitle').textContent = cfg.subtitle;
+    applyLabels(cfg);
+}
+
+function applyLabels(cfg) {
+    document.getElementById('searchLabel').textContent = cfg.searchLabel || 'Search (name / email)';
+    document.getElementById('typeLabel').textContent = cfg.typeLabel || 'Filter';
+}
+
+function renderSummary(summary) {
+    const grid = document.getElementById('summaryGrid');
+    grid.innerHTML = '';
+    Object.keys(TABLE_CONFIG).forEach(key => {
+        const card = document.createElement('div');
+        card.className = 'summary-card';
+        card.innerHTML = `<div class="count">${summary[key] ?? 0}</div><div class="label">${TABLE_CONFIG[key].label}</div>`;
+        grid.appendChild(card);
+    });
+}
+
+function resetFilters() {
+    document.getElementById('searchInput').value = '';
+    document.getElementById('fromDate').value = '';
+    document.getElementById('toDate').value = '';
+    document.getElementById('typeSelect').innerHTML = '<option value="">All</option>';
+}
+
+async function loadTable(table) {
+    const container = document.getElementById('tableContainer');
+    container.innerHTML = '<div class="loading-state">Loading…</div>';
+
+    const search = document.getElementById('searchInput').value.trim();
+    const from = document.getElementById('fromDate').value;
+    const to = document.getElementById('toDate').value;
+    const type = document.getElementById('typeSelect').value;
+
+    const params = new URLSearchParams({ table });
+    if (search) params.set('search', search);
+    if (from) params.set('from', from);
+    if (to) params.set('to', to);
+    if (type) params.set('type', type);
+
+    try {
+        const res = await fetch(`${API_BASE}/dashboard-data?${params.toString()}`, { headers: authHeaders() });
+        if (res.status === 401) {
+            localStorage.removeItem('asb_admin_token');
+            window.location.href = 'login.html';
+            return;
+        }
+        const data = await res.json();
+
+        if (!data.success) {
+            container.innerHTML = `<div class="empty-state">${data.message || 'Failed to load data.'}</div>`;
+            return;
+        }
+
+        // Populate type filter dropdown
+        const typeWrap = document.getElementById('typeFieldWrap');
+        const typeSelect = document.getElementById('typeSelect');
+        if (data.typeOptions && data.typeOptions.length) {
+            typeWrap.style.display = 'flex';
+            const current = typeSelect.value;
+            typeSelect.innerHTML = '<option value="">All</option>' +
+                data.typeOptions.map(v => `<option value="${escapeHtml(v)}">${escapeHtml(v)}</option>`).join('');
+            typeSelect.value = current;
+        } else {
+            typeWrap.style.display = 'none';
+        }
+
+        renderTable(data.data || []);
+    } catch (err) {
+        container.innerHTML = '<div class="empty-state">Could not reach the server. Please try again.</div>';
+    }
+}
+
+function escapeHtml(str) {
+    return String(str ?? '').replace(/[&<>"']/g, s => ({
+        '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
+    }[s]));
+}
+
+function formatCell(col, val) {
+    if (val === null || val === undefined) return '';
+    if (/_at$/i.test(col)) {
+        const d = new Date(val);
+        if (!isNaN(d)) return d.toLocaleString('en-IN', { dateStyle: 'medium', timeStyle: 'short' });
+    }
+    if (typeof val === 'boolean') return val ? 'Yes' : 'No';
+    if (val instanceof Object) return JSON.stringify(val);
+    return String(val);
+}
+
+function visibleColumns(rows) {
+    const tableHidden = HIDDEN_COLUMNS_BY_TABLE[currentTable] || [];
+    return Object.keys(rows[0]).filter(col => {
+        const c = col.toLowerCase();
+        return !HIDDEN_COLUMNS.includes(c) && !tableHidden.includes(c);
+    });
+}
+
+function renderTable(rows) {
+    const container = document.getElementById('tableContainer');
+    if (!rows.length) {
+        container.innerHTML = '<div class="empty-state">No records found.</div>';
+        return;
+    }
+
+    const columns = visibleColumns(rows);
+    let html = '<table><thead><tr>';
+    columns.forEach(col => html += `<th>${escapeHtml(col.replace(/_/g, ' '))}</th>`);
+    const isCareers = currentTable === 'careers';
+    const isPartner = currentTable === 'partnership';
+    if (isCareers) html += '<th>resume</th>';
+    if (isPartner) html += '<th>proposal</th>';
+    html += '</tr></thead><tbody>';
+
+    rows.forEach(row => {
+        html += '<tr>';
+        columns.forEach(col => {
+            html += `<td>${escapeHtml(formatCell(col, row[col]))}</td>`;
+        });
+        if (isCareers) {
+            html += `<td><button type="button" class="secondary resume-dl" data-id="${escapeHtml(row.application_id)}" data-name="${escapeHtml(row.resume_name || 'resume')}">Download</button></td>`;
+        }
+        if (isPartner) {
+            html += row.proposal_name
+                ? `<td><button type="button" class="secondary resume-dl" data-api="partnership-proposal" data-id="${escapeHtml(row.reference)}" data-name="${escapeHtml(row.proposal_name)}">Download</button></td>`
+                : '<td>—</td>';
+        }
+        html += '</tr>';
+    });
+
+    html += '</tbody></table>';
+    container.innerHTML = html;
+}
+
+document.getElementById('tableContainer').addEventListener('click', async (e) => {
+    const btn = e.target.closest('.resume-dl');
+    if (!btn) return;
+    const label = btn.textContent;
+    btn.disabled = true; btn.textContent = '…';
+    try {
+        const res = await fetch(`${API_BASE}/${btn.dataset.api || 'career-resume'}?id=${encodeURIComponent(btn.dataset.id)}`, { headers: authHeaders() });
+        if (!res.ok) throw new Error('HTTP ' + res.status);
+        const blob = await res.blob();
+        const a = document.createElement('a');
+        a.href = URL.createObjectURL(blob);
+        a.download = btn.dataset.name || 'resume';
+        document.body.appendChild(a); a.click(); a.remove();
+        setTimeout(() => URL.revokeObjectURL(a.href), 2000);
+    } catch (err) {
+        alert('Could not download the file. Please try again.');
+    } finally {
+        btn.disabled = false; btn.textContent = label;
+    }
+});
+
+document.getElementById('applyFilters').addEventListener('click', () => loadTable(currentTable));
+document.getElementById('clearFilters').addEventListener('click', () => {
+    resetFilters();
+    loadTable(currentTable);
+});
+
+document.getElementById('menuToggle').addEventListener('click', () => {
+    document.getElementById('sidebar').classList.toggle('open');
+});
+
+document.getElementById('logoutBtn').addEventListener('click', () => {
+    localStorage.removeItem('asb_admin_token');
+    localStorage.removeItem('asb_admin_username');
+    localStorage.removeItem('asb_admin_role');
+    window.location.href = 'login.html';
+});
+
+// ---------------------------------------------------------------
+// Export (CSV / PDF) - uses the currently applied filters and
+// re-fetches up to 5000 rows so the file is not limited to the
+// 100 rows shown on screen.
+// ---------------------------------------------------------------
+async function fetchRowsForExport() {
+    const params = new URLSearchParams({ table: currentTable, limit: '5000' });
+    const search = document.getElementById('searchInput').value.trim();
+    const from = document.getElementById('fromDate').value;
+    const to = document.getElementById('toDate').value;
+    const type = document.getElementById('typeSelect').value;
+    if (search) params.set('search', search);
+    if (from) params.set('from', from);
+    if (to) params.set('to', to);
+    if (type) params.set('type', type);
+
+    const res = await fetch(`${API_BASE}/dashboard-data?${params.toString()}`, { headers: authHeaders() });
+    if (res.status === 401) {
+        localStorage.removeItem('asb_admin_token');
+        window.location.href = 'login.html';
+        return null;
+    }
+    const data = await res.json();
+    if (!data.success) throw new Error(data.message || 'Failed to load data');
+    return data.data || [];
+}
+
+function exportFileName(ext) {
+    return `${currentTable}-${new Date().toISOString().slice(0, 10)}.${ext}`;
+}
+
+function filterSummaryText() {
+    const parts = [];
+    const search = document.getElementById('searchInput').value.trim();
+    const from = document.getElementById('fromDate').value;
+    const to = document.getElementById('toDate').value;
+    const typeSel = document.getElementById('typeSelect');
+    if (search) parts.push(`Search: ${search}`);
+    if (from) parts.push(`From: ${from}`);
+    if (to) parts.push(`To: ${to}`);
+    if (typeSel.value) parts.push(`${document.getElementById('typeLabel').textContent}: ${typeSel.value}`);
+    return parts.length ? parts.join('  |  ') : 'No filters (all records)';
+}
+
+function csvCell(v) {
+    let t = String(v ?? '');
+    // neutralise spreadsheet formula injection (=, +, -, @ at the start of a cell)
+    if (/^[=+\-@\t\r]/.test(t)) t = "'" + t;
+    return '"' + t.replace(/"/g, '""') + '"';
+}
+
+async function withButtonBusy(btn, label, fn) {
+    const original = btn.textContent;
+    btn.disabled = true;
+    btn.textContent = label;
+    try {
+        await fn();
+    } catch (err) {
+        console.error(err);
+        alert('Download failed: ' + (err.message || 'please try again.'));
+    } finally {
+        btn.disabled = false;
+        btn.textContent = original;
+    }
+}
+
+document.getElementById('downloadCsv').addEventListener('click', (e) => {
+    withButtonBusy(e.currentTarget, 'Preparing…', async () => {
+        const rows = await fetchRowsForExport();
+        if (rows === null) return;
+        if (!rows.length) { alert('No records to download for the current filters.'); return; }
+        const cols = visibleColumns(rows);
+        const lines = [cols.map(c => csvCell(c.replace(/_/g, ' '))).join(',')];
+        rows.forEach(r => lines.push(cols.map(c => csvCell(formatCell(c, r[c]))).join(',')));
+        // BOM so Excel opens UTF-8 names correctly
+        const blob = new Blob(['\uFEFF' + lines.join('\r\n')], { type: 'text/csv;charset=utf-8;' });
+        triggerDownload(blob, exportFileName('csv'));
+    });
+});
+
+function loadScript(src) {
+    return new Promise((resolve, reject) => {
+        const el = document.createElement('script');
+        el.src = src;
+        el.onload = resolve;
+        el.onerror = () => reject(new Error('Could not load ' + src));
+        document.head.appendChild(el);
+    });
+}
+
+let pdfLibsReady = null;
+function ensurePdfLibs() {
+    if (!pdfLibsReady) {
+        pdfLibsReady = loadScript('https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js')
+            .then(() => loadScript('https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.8.2/jspdf.plugin.autotable.min.js'))
+            .catch(err => { pdfLibsReady = null; throw err; });
+    }
+    return pdfLibsReady;
+}
+
+document.getElementById('downloadPdf').addEventListener('click', (e) => {
+    withButtonBusy(e.currentTarget, 'Preparing…', async () => {
+        const rows = await fetchRowsForExport();
+        if (rows === null) return;
+        if (!rows.length) { alert('No records to download for the current filters.'); return; }
+        await ensurePdfLibs();
+
+        const cols = visibleColumns(rows);
+        const { jsPDF } = window.jspdf;
+        const doc = new jsPDF({ orientation: 'landscape', unit: 'pt', format: 'a4' });
+        const cfg = TABLE_CONFIG[currentTable];
+
+        doc.setFontSize(15);
+        doc.text(`AsquareB - ${cfg.label}`, 40, 38);
+        doc.setFontSize(9);
+        doc.setTextColor(100);
+        doc.text(`Generated: ${new Date().toLocaleString('en-IN')}   |   Records: ${rows.length}`, 40, 54);
+        doc.text(`Filters: ${filterSummaryText()}`, 40, 67);
+
+        doc.autoTable({
+            startY: 78,
+            head: [cols.map(c => c.replace(/_/g, ' ').toUpperCase())],
+            body: rows.map(r => cols.map(c => formatCell(c, r[c]))),
+            styles: { fontSize: 8, cellPadding: 4, overflow: 'linebreak' },
+            headStyles: { fillColor: [8, 50, 79], textColor: 255 },
+            alternateRowStyles: { fillColor: [242, 245, 252] },
+            margin: { left: 40, right: 40 },
+            didDrawPage: () => {
+                const h = doc.internal.pageSize.getHeight();
+                doc.setFontSize(8);
+                doc.setTextColor(120);
+                doc.text('Page ' + doc.internal.getCurrentPageInfo().pageNumber, 40, h - 20);
+            }
+        });
+        doc.save(exportFileName('pdf'));
+    });
+});
+
+function triggerDownload(blob, filename) {
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = filename;
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    setTimeout(() => URL.revokeObjectURL(url), 1000);
+}
+
+checkSession();
+</script>
+<style id="asb-nav-dark">/* nav menu: logo blue (#1078b8) to match the AsquareB logo */
+html body header#asbHeader .asb-header__link,
+html body header#asbHeader .asb-header__dropdown-toggle,
+html body header#asbHeader nav#asbNav .asb-header__link,
+html body header#asbHeader nav#asbNav .asb-header__dropdown-toggle,
+html body header#asbHeader nav#asbNav.asb-header__nav .asb-header__link,
+html body header#asbHeader nav#asbNav.asb-header__nav .asb-header__dropdown-toggle,
+html body header#asbHeader .asb-header__dropdown-item{color:#1078b8 !important;font-weight:600 !important}
+html body header#asbHeader nav#asbNav .asb-header__link:hover,
+html body header#asbHeader nav#asbNav .asb-header__dropdown-toggle:hover,
+html body header#asbHeader .asb-header__dropdown-item:hover{color:#0b5a8c !important}
+html body header#asbHeader .asb-header__dropdown-arrow{color:#1078b8 !important;stroke:#1078b8 !important}
+@media (min-width:992px){
+html body header#asbHeader .asb-header__dropdown-item,
+html body header#asbHeader nav#asbNav .asb-header__dropdown-item{color:#ffffff !important;font-weight:500 !important}
+html body header#asbHeader .asb-header__dropdown-item:hover,
+html body header#asbHeader nav#asbNav .asb-header__dropdown-item:hover{color:#ffffff !important;background:rgba(255,255,255,.14) !important}
+}
+</style>
+</body>
+</html>

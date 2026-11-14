@@ -1,0 +1,273 @@
+{
+  "rewrites": [
+    {
+      "source": "/",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/index",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/about",
+      "destination": "/about.html"
+    },
+    {
+      "source": "/orbit-council",
+      "destination": "/orbit-council.html"
+    },
+    {
+      "source": "/founder-afsar-baig",
+      "destination": "/founder-afsar-baig.html"
+    },
+    {
+      "source": "/contact",
+      "destination": "/contact.html"
+    },
+    {
+      "source": "/enquiry",
+      "destination": "/enquiry.html"
+    },
+    {
+      "source": "/blog",
+      "destination": "/blog.html"
+    },
+    {
+      "source": "/programs",
+      "destination": "/programs.html"
+    },
+    {
+      "source": "/faq",
+      "destination": "/faq.html"
+    },
+    {
+      "source": "/gallery",
+      "destination": "/gallery.html"
+    },
+    {
+      "source": "/privacy",
+      "destination": "/privacy.html"
+    },
+    {
+      "source": "/refund-cancellation-policy",
+      "destination": "/refund-cancellation-policy.html"
+    },
+    {
+      "source": "/cookie-policy",
+      "destination": "/cookie-policy.html"
+    },
+    {
+      "source": "/admissions-consultancy-disclaimer",
+      "destination": "/admissions-consultancy-disclaimer.html"
+    },
+    {
+      "source": "/child-protection-parental-consent",
+      "destination": "/child-protection-parental-consent.html"
+    },
+    {
+      "source": "/marketing-communication-consent",
+      "destination": "/marketing-communication-consent.html"
+    },
+    {
+      "source": "/campus-connect",
+      "destination": "/campus-connect.html"
+    },
+    {
+      "source": "/orbit-alliance",
+      "destination": "/orbit-alliance.html"
+    },
+    {
+      "source": "/orbit-innovate",
+      "destination": "/orbit-innovate.html"
+    },
+    {
+      "source": "/terms",
+      "destination": "/terms.html"
+    },
+    {
+      "source": "/academic-excellence",
+      "destination": "/academic-excellence.html"
+    },
+    {
+      "source": "/global-education-admissions",
+      "destination": "/global-education-admissions.html"
+    },
+    {
+      "source": "/global-education-register",
+      "destination": "/global-education-register.html"
+    },
+    {
+      "source": "/careers",
+      "destination": "/careers.html"
+    },
+    {
+      "source": "/education-admissions-guidance",
+      "destination": "/education-admissions-guidance.html"
+    },
+    {
+      "source": "/online-education-skill-development",
+      "destination": "/online-education-skill-development.html"
+    },
+    {
+      "source": "/competitive-exam-preparation",
+      "destination": "/competitive-exam-preparation.html"
+    },
+    {
+      "source": "/professional-soft-skills-development",
+      "destination": "/professional-soft-skills-development.html"
+    },
+    {
+      "source": "/special-learning-development-programs",
+      "destination": "/special-learning-development-programs.html"
+    },
+    {
+      "source": "/career-intelligence-assessment",
+      "destination": "/career-intelligence-assessment.html"
+    },
+    {
+      "source": "/blog-career-guidance",
+      "destination": "/blog-career-guidance.html"
+    },
+    {
+      "source": "/blog-study-techniques",
+      "destination": "/blog-study-techniques.html"
+    },
+    {
+      "source": "/blog-board-exam-prep",
+      "destination": "/blog-board-exam-prep.html"
+    },
+    {
+      "source": "/blog-parenting",
+      "destination": "/blog-parenting.html"
+    },
+    {
+      "source": "/blog-digital-detox",
+      "destination": "/blog-digital-detox.html"
+    },
+    {
+      "source": "/blog-top-careers",
+      "destination": "/blog-top-careers.html"
+    },
+    {
+      "source": "/chatbot-standalone",
+      "destination": "/chatbot-standalone.html"
+    },
+    {
+      "source": "/chatbot/lead",
+      "destination": "/api/chatbot-lead"
+    },
+    {
+      "source": "/login",
+      "destination": "/login.html"
+    },
+    {
+      "source": "/dashboard",
+      "destination": "/dashboard.html"
+    }
+  ],
+  "redirects": [
+    {
+      "source": "/academic-coaching",
+      "destination": "/academic-excellence",
+      "permanent": true
+    },
+    {
+      "source": "/academic-coaching.html",
+      "destination": "/academic-excellence",
+      "permanent": true
+    },
+    {
+      "source": "/competitive-exams",
+      "destination": "/competitive-exam-preparation",
+      "permanent": true
+    },
+    {
+      "source": "/competitive-exams.html",
+      "destination": "/competitive-exam-preparation",
+      "permanent": true
+    },
+    {
+      "source": "/skill-development",
+      "destination": "/professional-soft-skills-development",
+      "permanent": true
+    },
+    {
+      "source": "/skill-development.html",
+      "destination": "/professional-soft-skills-development",
+      "permanent": true
+    },
+    {
+      "source": "/special-programs",
+      "destination": "/special-learning-development-programs",
+      "permanent": true
+    },
+    {
+      "source": "/special-programs.html",
+      "destination": "/special-learning-development-programs",
+      "permanent": true
+    },
+    {
+      "source": "/technology-programs",
+      "destination": "/online-education-skill-development",
+      "permanent": true
+    },
+    {
+      "source": "/technology-programs.html",
+      "destination": "/online-education-skill-development",
+      "permanent": true
+    },
+    {
+      "source": "/consultancy-services",
+      "destination": "/education-admissions-guidance",
+      "permanent": true
+    },
+    {
+      "source": "/consultancy-services.html",
+      "destination": "/education-admissions-guidance",
+      "permanent": true
+    },
+    {
+      "source": "/career-development",
+      "destination": "/career-intelligence-assessment",
+      "permanent": true
+    },
+    {
+      "source": "/career-development.html",
+      "destination": "/career-intelligence-assessment",
+      "permanent": true
+    },
+    {
+      "source": "/:page*.html",
+      "destination": "/:page*",
+      "permanent": true
+    },
+    {
+      "source": "/founder-team",
+      "destination": "/orbit-council",
+      "permanent": true
+    },
+    {
+      "source": "/founder-team.html",
+      "destination": "/orbit-council",
+      "permanent": true
+    },
+    {
+      "source": "/distance-learning-skill-development",
+      "destination": "/online-education-skill-development",
+      "permanent": true
+    },
+    {
+      "source": "/distance-learning-skill-development.html",
+      "destination": "/online-education-skill-development",
+      "permanent": true
+    }
+  ],
+  "functions": {
+    "api/submit-form.js": {
+      "maxDuration": 30
+    },
+    "api/career-upload.js": {
+      "maxDuration": 30
+    }
+  }
+}

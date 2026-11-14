@@ -1,0 +1,23 @@
+
+	.ZipCodeRestrict .success_msg.message,.ZipCodeRestrict .estimation_msg.message,.ZipCodeRestrict .error_msg.message,.ZipCodeRestrict .not_valid_error_msg.message, .ZipCodeRestrict .check-validation-msg,.ZipCodeRestrict .aj_exchange_msg.message,.ZipCodeRestrict .aj_cod_msg.message{padding: 5px; margin-top: 10px; margin-bottom: 10px;display:none; padding-left: 10px;}
+	.ZipCodeRestrict .zipcodecheck_area img{width: 30px; vertical-align: middle;}
+	.ZipCodeRestrict .block_label_text{padding-left: 5px; font-weight: bold;}
+	.ZipCodeRestrict .zipcode_validation{padding-bottom: 10px;padding-top: 10px;display:flex;}
+	.ZipCodeRestrict .zipcode_input, .aj_waiting_list .zipcode_input{width: 100%; min-height: 40px !important; display: unset;}
+	.ZipCodeRestrict .zipcode_submit{border: unset;width: 27%; margin-left: 3%; min-height: 40px; text-align: center;}
+	.ZipCodeRestrict .empty_val_error{display:none; padding-bottom: 6px;color: red;}
+	.ZipCodeRestrict{width:100%;}
+	.iti { width: 100%; }
+	.location-popup .zipcode_inputbox{width: 75%; position: relative;}
+	.zipcode_inline_view .zipcode_inputbox{position: relative; width: 70%;}
+	.zipcode_bar_view .zipcode_inputbox{position: relative;}
+  	#zipMicBtn{display: none;}
+	.mic {
+		background: none;
+		border: none;
+		padding: 0;
+		cursor: pointer;
+		display: inline-flex;
+		justify-content: center;
+		align-items: center;
+	}
